@@ -1,0 +1,21 @@
+{% extends 'trainning_app/base.html' %}
+
+
+{% block title %} Главная страница {% endblock %}
+
+
+{% block content %}
+    <h2>Добавьте замеры</h2>
+    <form method="post">
+        {% csrf_token %}
+
+        {% for size in form %}
+        <div class="form-style {% if field.errors %} errors {% endif %}">
+            {{ size.label_tag }}
+            {{ size.errors }}
+            {{ size }}
+        </div>
+        {% endfor %}
+        <button>Отправить</button>
+    </form>
+{% endblock %}
