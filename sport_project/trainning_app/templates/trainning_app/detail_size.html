@@ -1,25 +1,43 @@
-{% extends 'feedback/base.html' %}
+{% extends 'trainning_app/base.html' %}
 
 {% block title %}
-    Информация об отзыве id = {{ feedback.id }}
+    Информация о записи на  {{ size.day }} {{ size.month }}
 {% endblock %}
 
 {% block content %}
 <form method="post">
     <div class="form-style {% if field.errors %} errors {% endif %}">
-        Имя = {{ feedback.name }}
+        <h2>
+            Банка = {{ size.biceps }}
+        </h2>
     </div>
     <div class="form-style {% if field.errors %} errors {% endif %}">
-        Фамилия = {{ feedback.surname }}
+        <h2>
+            Грудь = {{ size.breast }}
+        </h2>
     </div>
     <div class="form-style {% if field.errors %} errors {% endif %}">
-        Отзыв = {{ feedback.feedback }}
+        <h2>
+            Талия = {{ size.waist }}
+        </h2>
     </div>
     <div class="form-style {% if field.errors %} errors {% endif %}">
-        Рейтинг = {{ feedback.rating }}
+        <h2>
+            Обхват таза = {{ size.buttocks }}
+        </h2>
+    </div>
+    <div class="form-style {% if field.errors %} errors {% endif %}">
+        <h2>
+            Обхват голени = {{ size.hip }}
+        </h2>
+    </div>
+    <div class="form-style {% if field.errors %} errors {% endif %}">
+        <p><a href="{% url 'size-detail' pk=size.id %}">Внести изменения</a></p>
+    </div>
+    <div class="form-style {% if field.errors %} errors {% endif %}">
+        <p><a href="{% url 'size-delete' pk=size.id %}">Удалить запись</a></p>
     </div>
 </form>
-
 
 {% endblock %}
 

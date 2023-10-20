@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import FormView, CreateView, UpdateView
+from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import BodySize
 from .forms import BodySizeForm
@@ -30,5 +30,16 @@ class ListBodySize(ListView):
         return  queryset
 
 class DetailBodySize(DetailView):
-    template_name = ''
+    template_name = 'trainning_app/detail_size.html'
     model = BodySize
+    context_object_name = 'size'
+class BodySizeUpdate(UpdateView):
+    model = BodySize
+    form_class = BodySizeForm #То, как будет выглядеть форма
+    template_name = 'trainning_app/add_size.html'
+    success_url = '/done'
+
+class DoneDelete(DeleteView):
+     template_name = 'trainning_app/done_delete.html'
+
+
