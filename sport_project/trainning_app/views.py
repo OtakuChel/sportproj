@@ -39,7 +39,13 @@ class BodySizeUpdate(UpdateView):
     template_name = 'trainning_app/add_size.html'
     success_url = '/done'
 
-class DoneDelete(DeleteView):
-     template_name = 'trainning_app/done_delete.html'
+class SureDelete(DeleteView):
+    model = BodySize
+    form_class = BodySizeForm
+    context_object_name = 'size'
+    template_name = 'trainning_app/sure_delete.html'
+    success_url = '/done_delete'
 
+class DoneDelete(TemplateView):
+    template_name = 'trainning_app/done_delete.html'
 

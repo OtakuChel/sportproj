@@ -1,0 +1,14 @@
+{% extends 'trainning_app/base.html' %}
+
+{% block title %} Sure? {% endblock %}
+
+{% block content %}
+    <div>
+        <form method="post" action="">
+            {% csrf_token %}
+            <h2>Вы правда хотите удалить запись на {{ size.day }} {{ size.month }}</h2>
+            <input type="submit" value="Подтвердить" />
+
+        </form>
+    </div>
+{% endblock %}
