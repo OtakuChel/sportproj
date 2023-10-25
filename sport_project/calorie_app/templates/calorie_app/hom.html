@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{% load static %} {% load mathfilters %} {% load humanize %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -32,7 +32,7 @@
                   {% if api == 'oops! Error' %}
                   <div class ="alert alert-warning"> Oh no! something went wrong.Please try again in sometime. </div>
                   {% else %}
-                  <h1>Говно has a total of <strong> 5 Calories</strong>
+                  <h1>{{api.0.name | capfirst}} has a total of <strong> {{api.0.calories}} Calories</strong>
 
                      <img src="{% static 'calorie_app/images/shocked.png' %}" class="img-responsive" />
 
@@ -58,27 +58,27 @@
                       <div class="col-md-6">
                           <h2 class="mt-3 mb-4">Nutritional Values </h2><span></span>
                           <ul>
-                              <li class="servingsize">Serving Size per 100/Grams</li>
-                              <li>Carbohydrates: 0</li>
-                              <li>Cholesterol: 0</li>
-                              <li>Saturated fat: 0</li>
-                              <li>Total Fat: 0</li>
-                              <li>Fiber Content: 0</li>
-                              <li>Potassium 0</li>
-                              <li>Protein: 0</li>
-                              <li>Sodium0</li>
-                              <li>Sugar: 0</li>
+                              <li class="servingsize">Serving Size per 100/Grams <span class="float-end"></span></li>
+                              <li>Carbohydrates: <span class="float-end">{{api.0.carbohydrates_total_g}}</span></li>
+                              <li>Cholesterol: <span class="float-end">{{api.0.cholesterol_mg}}</span></li>
+                              <li>Saturated fat: <span class="float-end">{{api.0.fat_saturated_g}}</span></li>
+                              <li>Total Fat: <span class="float-end">{{api.0.fat_saturated_g}}</span></li>
+                              <li>Fiber Content: <span class="float-end">{{api.0.fat_total_g}}</span></li>
+                              <li>Potassium <span class="float-end">{{api.0.potassium_mg}}</span></li>
+                              <li>Protein: <span class="float-end">{{api.0.protein_g}}</span></li>
+                              <li>Sodium:<span class="float-end">{{api.0.sodium_mg}}</span></li>
+                              <li>Sugar: <span class="float-end">{{api.0.sugar_g}}</span></li>
                           </ul>
                       </div>
                       <div class="col-md-6 mb-5">
-                          <h4 class="mt-3 mb-4">To burn  calories you will have to</h4>
+                          <h4 class="mt-3 mb-4">To burn {{api.0.calories}} calories you will have to</h4>
                           <div class="d-flex align-items-center mb-5">
                               <div class="flex-shrink-0">
                                   <img src="{% static 'calorie_app/images/running.png' %}" alt="...">
                               </div>
                               <div class="flex-grow-1 ms-3">
                                   <h5> Jog </h5>
-                                  <p>you will have to jog for <strong> ыы </strong> Minutes</p>
+                                  <p>you will have to jog for <strong> {{api.0.calories | div:229 | mul:60 | floatformat:0 }} </strong> Minutes</p>
                               </div>
                           </div>
                           <div class="d-flex align-items-center mb-5">
@@ -87,7 +87,7 @@
                               </div>
                               <div class="flex-grow-1 ms-4">
                                   <h5> Do Power Yoga </h5>
-                                  <p>you will have to Power Yoga for <strong> хй </strong> Minutes</p>
+                                  <p>you will have to Power Yoga for <strong> {{api.0.calories | div:223 | mul:60 | floatformat:0 }} </strong> Minutes</p>
                               </div>
                           </div>
                           <div class="d-flex align-items-center mb-5">
@@ -96,7 +96,7 @@
                               </div>
                               <div class="flex-grow-1 ms-4">
                                   <h5>Get a Gym Workout </h5>
-                                  <p>you will have to lift weight for <strong> лзл </strong> Minutes </p>
+                                  <p>you will have to lift weight for <strong> {{api.0.calories | div:423 | mul:60 | floatformat:0 }} </strong> Minutes </p>
                               </div>
                           </div>
                           <div class="d-flex align-items-center">
@@ -105,7 +105,7 @@
                               </div>
                               <div class="flex-grow-1 ms-1">
                                   <h5> Go for a Brisk Walk </h5>
-                                  <p>you will have to brisk walk for <strong>лрлр  </strong> Minutes</p>
+                                  <p>you will have to brisk walk for <strong> {{api.0.calories | div:294 | mul:60 | floatformat:0 }} </strong> Minutes</p>
                               </div>
                           </div>
                       </div>

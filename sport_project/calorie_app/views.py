@@ -18,6 +18,6 @@ def home(request):
         except Exception as e:
             api = 'oops! Error'
             print(e)
-        return render(request, 'calorie_app/hom.html', context={'api': api})
+        return render(request, 'calorie_app/home.html', context={'api': api})
     else:
-        return render(request, 'calorie_app/hom.html', context={'query': 'Введите корректный запрос'})
+        return render(request, 'calorie_app/home.html', context={'query': 'Введите корректный запрос'})
