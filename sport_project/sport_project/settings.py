@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'trainning_app',
     'calorie_app',
+    'food_counter',
     'mathfilters',
 ]
 

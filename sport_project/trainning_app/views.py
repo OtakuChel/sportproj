@@ -15,7 +15,7 @@ class AddBodySize(CreateView):
     #fields = '__all__'
     form_class = BodySizeForm
     template_name = 'trainning_app/add_size.html'
-    success_url = '/done'
+    success_url = 'done'
 
 class DoneView(TemplateView):
     template_name = 'trainning_app/done.html'

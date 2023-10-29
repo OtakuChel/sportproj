@@ -12,6 +12,11 @@ from .models import BodySize
 #    rating = forms.IntegerField(max_value=100, min_value=0)
 
 class BodySizeForm(forms.ModelForm):
+    date = forms.DateField(label='Дата', widget=forms.DateInput(
+        attrs={
+            'class': 'form-control',
+            'type': 'date'
+        }))
     class Meta:
         model = BodySize
         fields = '__all__'

@@ -1,0 +1,17 @@
+{% extends 'food_counter/base.html' %}
+
+{% block title %} Done {% endblock %}
+
+{% block content %}
+    <div>
+        <h2>Прием пищи успешно добавлен.</h2>
+    </div>
+
+    <div>
+        <a href="/"> <p>На главную</p> </a>
+        <a href="{% url 'add_food' %}"> <p>Добавить прием пищи</p> </a>
+        <a href="/sizes-db"> <p>Список приемов пищи</p> </a>
+    </div>
+
+
+{% endblock %}

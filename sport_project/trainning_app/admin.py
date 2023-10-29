@@ -5,4 +5,4 @@ from .models import BodySize
 
 @admin.register(BodySize)
 class BodySizeAdmin(admin.ModelAdmin):
-    list_display = ['id', 'day', 'month']
+    list_display = ['id', 'date']
