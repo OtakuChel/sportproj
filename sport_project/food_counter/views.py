@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.views import View
-from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import TemplateView
 from .models import Eating, EatingDate
 from .forms import EatingForm, EatingDateForm
+
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -15,13 +17,27 @@ class AddEatingDate(CreateView):
     template_name = 'food_counter/add_eating_date.html'
     success_url = 'add_eating'
 
+    def get_success_url(self):
+        self.success_url = self.success_url + f'/{self.__dict__["object"]}'
+        return super().get_success_url()
+
 class AddEating(CreateView):
     model = Eating
-    #fields = '__all__'
-    exclude = ['date']
+
     form_class = EatingForm
     template_name = 'food_counter/eating.html'
-    success_url = 'add_eating/done'
+    success_url = 'done'
+
+    def post(self, request, *args, **kwargs):
+        x = request.POST.copy()
+        x['date'] = str(kwargs['pk'])
+        request.POST = x
+        return super(AddEating, self).post(request, *args, **kwargs)
+
+
+class DoneAdd(TemplateView):
+    template_name = 'food_counter/done.html'
+
 
 #class AddEating(UpdateView):
 #    model = Eating

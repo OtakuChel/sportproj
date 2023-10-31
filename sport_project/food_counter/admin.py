@@ -11,4 +11,4 @@ class bd1Admin(admin.ModelAdmin):
 
 @admin.register(Eating)
 class bd2Admin(admin.ModelAdmin):
-    list_display = ['eating']
+    list_display = ['eating', 'date']

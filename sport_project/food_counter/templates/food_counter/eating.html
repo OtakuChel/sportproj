@@ -7,13 +7,38 @@
     <form method="post">
         {% csrf_token %}
 
-        {% for eating in form %}
+
         <div class="form-style {% if field.errors %} errors {% endif %}">
-            {{ eating.label_tag }}
-            {{ eating.errors }}
-            {{ eating }}
+            {{ form.eating.label_tag }}
+            {{ form.eating }}
+            {{ form.dish_1.label_tag }}
+            {{ form.dish_1 }}
+            {{ form.weight_1.label_tag }}
+            {{ form.weight_1 }}
+            {{ form.dish_2.label_tag }}
+            {{ form.dish_2 }}
+            {{ form.weight_2.label_tag }}
+            {{ form.weight_2 }}
+            {{ form.dish_3.label_tag }}
+            {{ form.dish_3 }}
+            {{ form.weight_3.label_tag }}
+            {{ form.weight_3 }}
+            {{ form.dish_4.label_tag }}
+            {{ form.dish_4 }}
+            {{ form.weight_4.label_tag }}
+            {{ form.weight_4 }}
+            {{ form.dish_5.label_tag }}
+            {{ form.dish_5 }}
+            {{ form.weight_5.label_tag }}
+            {{ form.weight_5 }}
+            {{ form.dish_6.label_tag }}
+            {{ form.dish_6 }}
+            {{ form.weight_6.label_tag }}
+            {{ form.weight_6 }}
+
         </div>
-        {% endfor %}
+
+
         <button>Отправить</button>
     </form>
 {% endblock %}

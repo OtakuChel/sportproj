@@ -14,5 +14,6 @@ class EatingDateForm(forms.ModelForm):
 class EatingForm(forms.ModelForm):
     class Meta:
         model = Eating
-        exclude = '__all__'
+        fields = '__all__'
+        #exclude = ['date']
 
