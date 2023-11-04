@@ -8,7 +8,11 @@ class EatingDate(models.Model):
     date = models.DateField(verbose_name='Дата', null=False)
 
     def __str__(self):
-    #    return f'{self.date}'
+        #print('str')
+        return f'{self.__dict__["date"]}'
+
+    def __repr__(self):
+        #print('repr')
         return f'{self.__dict__["id"]}'
 
 class Eating(models.Model):

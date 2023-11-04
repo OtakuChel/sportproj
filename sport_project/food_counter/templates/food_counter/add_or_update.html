@@ -1,0 +1,24 @@
+{% extends 'food_counter/base.html' %}
+
+{% block title %} What do you want? {% endblock %}
+
+{% block content %}
+    <div>
+        <h2>What do you want?</h2>
+    </div>
+
+    <div>
+        <h2><a href="{% url 'add_eating_date' %}"> <p>Добавить дату</p></a></h2>
+    </div>
+
+    <div>
+        <h2><a href="{% url 'list_dates' %}"><p>Добавить прием пищи (открыть список дат)</p></a></h2>
+    </div>
+
+    <div>
+        <h2><a href="/"><p>На главную</p></a></h2>
+    </div>
+
+
+
+{% endblock %}

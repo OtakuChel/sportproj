@@ -1,0 +1,20 @@
+{% extends 'food_counter/base.html' %}
+
+{% block title %}
+    Список дат
+{% endblock %}
+
+{% block content %}
+
+    {% if not eatings %}
+        <p>Приемов пищи нет</p>
+    {% endif %}
+
+    {% for eating in eatings %}
+        <div class="form-style {% if field.errors %} errors {% endif %}">
+            <a href="{% url 'detail_eating' pk=eating.id %}"> <h2>Прием пищи: {{ eating.eating }}</h2> </a>
+        </div>
+    {% endfor %}
+
+{% endblock %}
+

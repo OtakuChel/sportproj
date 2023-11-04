@@ -1,14 +1,14 @@
 {% extends 'food_counter/base.html' %}
 
 {% block title %}
-    Список всех замеров
+    Список дат
 {% endblock %}
 
 {% block content %}
 
-    {% for size in sizes %}
+    {% for date in dates %}
         <div class="form-style {% if field.errors %} errors {% endif %}">
-            <a href="{% url 'size-detail' pk=size.id %}"> <h2>Дата добавления: {{ size.month }}, {{ size.day }}</h2> </a>
+            <a href="{% url 'list_eatings' pk=date.id %}"> <h2>Дата: {{ date.date }}</h2> </a>
         </div>
 
     {% endfor %}

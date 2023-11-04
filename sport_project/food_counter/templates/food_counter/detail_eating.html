@@ -1,47 +1,56 @@
-{% extends 'trainning_app/base.html' %}
+{% extends 'food_counter/base.html' %}
 
 {% block title %}
-    Информация о записи на  {{ size.date }}
+    Информация о {{eating.eating}}
 {% endblock %}
 
 {% block content %}
-<h2>
-    {{ size.date }}
-</h2>
 <form method="post">
     <div class="form-style {% if field.errors %} errors {% endif %}">
         <h2>
-            Банка = {{ size.biceps }}
+             {{ eating.eating }}
         </h2>
     </div>
     <div class="form-style {% if field.errors %} errors {% endif %}">
         <h2>
-            Грудь = {{ size.breast }}
+            Блюдо: {{ eating.dish_1 }}
         </h2>
     </div>
     <div class="form-style {% if field.errors %} errors {% endif %}">
         <h2>
-            Талия = {{ size.waist }}
+            Граммовка: {{ eating.weight_1 }}
+        </h2>
+    </div>
+    {% if eating.dish_2 %}
+    <div class="form-style {% if field.errors %} errors {% endif %}">
+        <h2>
+            Блюдо: {{ eating.dish_2 }}
         </h2>
     </div>
     <div class="form-style {% if field.errors %} errors {% endif %}">
         <h2>
-            Обхват таза = {{ size.buttocks }}
+            Граммовка: {{ eating.weight_2 }}
+        </h2>
+    </div>
+    {% endif %}
+    {% if eating.dish_3 %}
+    <div class="form-style {% if field.errors %} errors {% endif %}">
+        <h2>
+            Блюдо: {{ eating.dish_3 }}
         </h2>
     </div>
     <div class="form-style {% if field.errors %} errors {% endif %}">
         <h2>
-            Обхват голени = {{ size.hip }}
+            Граммовка: {{ eating.weight_3 }}
         </h2>
     </div>
+    {% endif %}
+
     <div class="form-style {% if field.errors %} errors {% endif %}">
-        <p><a href="{% url 'size-update' pk=size.id %}">Внести изменения</a></p>
+        <p><a href="{% url 'update_eating' pk=eating.id %}">Внести изменения</a></p>
     </div>
     <div class="form-style {% if field.errors %} errors {% endif %}">
-        <p><a href="{% url 'size-delete' pk=size.id %}">Удалить запись</a></p>
-    </div>
-    <div class="form-style {% if field.errors %} errors {% endif %}">
-        <p><a href="/">На главную</a></p>
+        <p><a href="{% url 'delete_eating' pk=eating.id %}">Удалить запись</a></p>
     </div>
 </form>
 

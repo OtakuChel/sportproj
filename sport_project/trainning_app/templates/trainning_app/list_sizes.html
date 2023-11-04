@@ -8,7 +8,7 @@
 
     {% for size in sizes %}
         <div class="form-style {% if field.errors %} errors {% endif %}">
-            <a href="{% url 'size-detail' pk=size.id %}"> <h2>Дата добавления: {{ size.month }}, {{ size.day }}</h2> </a>
+            <a href="{% url 'size-detail' pk=size.id %}"> <h2>Дата добавления: {{ size.date }} </h2> </a>
         </div>
 
     {% endfor %}

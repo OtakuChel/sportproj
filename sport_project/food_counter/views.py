@@ -10,6 +10,9 @@ from django.http import HttpResponseRedirect
 
 # Create your views here.
 
+class AddOrUpdate(TemplateView):
+    template_name = 'food_counter/add_or_update.html'
+
 class AddEatingDate(CreateView):
     model = EatingDate
     #fields = '__all__'
@@ -18,7 +21,7 @@ class AddEatingDate(CreateView):
     success_url = 'add_eating'
 
     def get_success_url(self):
-        self.success_url = self.success_url + f'/{self.__dict__["object"]}'
+        self.success_url = self.success_url + f'/{self.__dict__["object"].__repr__()}'
         return super().get_success_url()
 
 class AddEating(CreateView):
@@ -39,6 +42,50 @@ class DoneAdd(TemplateView):
     template_name = 'food_counter/done.html'
 
 
+class ListEatingDates(ListView):
+    template_name = 'food_counter/list_dates.html'
+    model = EatingDate
+    context_object_name = 'dates'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        #filter_qs = queryset.filter()
+        return queryset
+
+
+class ListEatings(ListView):
+    template_name = 'food_counter/list_eatings.html'
+    model = Eating
+    context_object_name = 'eatings'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        filter_qs = queryset.filter(date=self.kwargs['pk'])
+        return filter_qs
+
+class DetailEating(DetailView):
+    template_name = 'food_counter/detail_eating.html'
+    model = Eating
+    context_object_name = 'eating'
+
+class UpdateEating(UpdateView):
+    model = Eating
+    form_class = EatingForm #То, как будет выглядеть форма
+    template_name = 'food_counter/eating.html'
+    success_url = '/'
+
+    def post(self, request, *args, **kwargs):
+        #x = request.POST.copy()
+        #x['date'] = str(kwargs['pk'])
+        #request.POST = x
+        return super(UpdateEating, self).post(request, *args, **kwargs)
+
+def delete_eating(request, pk: int):
+    Eating.objects.filter(id=pk).delete()
+    return render(request, 'food_counter/done_delete.html')
+
+
+
 #class AddEating(UpdateView):
 #    model = Eating
 #    #fields = '__all__'
@@ -48,7 +95,7 @@ class DoneAdd(TemplateView):
 #
 #
 #class ListBodySize(ListView):
-#    template_name = 'food_counter/list_sizes.html'
+#    template_name = 'food_counter/list_dates.html'
 #    model = BodySize
 #    context_object_name = 'sizes'
 #    def get_queryset(self):
@@ -57,7 +104,7 @@ class DoneAdd(TemplateView):
 #        return  queryset
 #
 #class DetailBodySize(DetailView):
-#    template_name = 'food_counter/detail_size.html'
+#    template_name = 'food_counter/detail_eating.html'
 #    model = BodySize
 #    context_object_name = 'size'
 #
