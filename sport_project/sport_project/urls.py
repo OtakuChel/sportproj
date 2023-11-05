@@ -16,10 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', TemplateView.as_view(template_name='main_page.html'), name='home'),
     path('', include('trainning_app.urls')),
     path('', include('calorie_app.urls')),
     path('', include('food_counter.urls')),
+    path('users/', include('users.urls')),
 ]

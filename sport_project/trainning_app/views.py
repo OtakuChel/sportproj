@@ -6,10 +6,6 @@ from .models import BodySize
 from .forms import BodySizeForm
 # Create your views here.
 
-
-class MainPage(TemplateView):
-    template_name = 'trainning_app/main_page.html'
-
 class AddBodySize(CreateView):
     model = BodySize
     #fields = '__all__'

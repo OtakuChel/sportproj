@@ -1,4 +1,4 @@
-{% extends 'trainning_app/base.html' %}
+{% extends 'food_counter/base.html' %}
 
 
 {% block title %} Главная страница {% endblock %}
@@ -7,7 +7,17 @@
 {% block content %}
 <div>
     <h2>Главная страница </h2>
+    <h2>User: {{ user }}</h2>
+    <div>
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %} "><h2>Выйти</h2></a>
+        {% else %}
+        <a href="{% url 'login' %}"><h2>Войти</a> | <a href="{% url 'register' %}">Регистрация</a></h2>
+        {% endif %}
+
+    </div>
 </div>
+
 <div>
     <a href="add_size"><h2>Добавить замер</h2></a>
     <a href="counter"><h2>Посмотреть калорийность</h2></a>
