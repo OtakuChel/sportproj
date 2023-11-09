@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'food_counter',
     'mathfilters',
     'users',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from food_counter.views import EatingDateAPIView, EatingsAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +26,6 @@ urlpatterns = [
     path('', include('calorie_app.urls')),
     path('', include('food_counter.urls')),
     path('users/', include('users.urls')),
+    path('api/v1/eating_date_list', EatingDateAPIView.as_view()),
+    path('api/v1/eatings_list', EatingsAPIView.as_view()),
 ]
