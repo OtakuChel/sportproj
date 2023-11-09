@@ -17,6 +17,9 @@ class BodySizeForm(forms.ModelForm):
             'class': 'form-control',
             'type': 'date'
         }))
+    def __init__(self, *args, **kwargs):
+        super(BodySizeForm, self).__init__(*args, **kwargs)
+        self.fields['user'].widget = forms.HiddenInput()  # Скрыть поле выбора пользователя
     class Meta:
         model = BodySize
         fields = '__all__'

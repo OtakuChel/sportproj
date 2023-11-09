@@ -9,7 +9,11 @@ class EatingDateForm(forms.ModelForm):
         }))
     class Meta:
         model = EatingDate
-        fields = ['date']
+        fields = ['date', 'user']
+
+    def __init__(self, *args, **kwargs):
+        super(EatingDateForm, self).__init__(*args, **kwargs)
+        self.fields['user'].widget = forms.HiddenInput()  # Скрыть поле выбора пользователя
 
 class EatingForm(forms.ModelForm):
     class Meta:
@@ -17,3 +21,7 @@ class EatingForm(forms.ModelForm):
         fields = '__all__'
         #exclude = ['date']
 
+    def __init__(self, *args, **kwargs):
+        super(EatingForm, self).__init__(*args, **kwargs)
+        self.fields['user'].widget = forms.HiddenInput()  # Скрыть поле выбора пользователя
+        self.fields['date'].widget = forms.HiddenInput()  # Скрыть поле выбора пользователя

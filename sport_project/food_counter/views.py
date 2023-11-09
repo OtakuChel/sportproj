@@ -3,6 +3,8 @@ from django.views import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import TemplateView
+
+from users.models import User
 from .models import Eating, EatingDate
 from .forms import EatingForm, EatingDateForm
 
@@ -24,6 +26,12 @@ class AddEatingDate(CreateView):
         self.success_url = self.success_url + f'/{self.__dict__["object"].__repr__()}'
         return super().get_success_url()
 
+    def post(self, request, *args, **kwargs):
+        x = request.POST.copy()
+        x['user'] = request.user
+        request.POST = x
+        return super(AddEatingDate, self).post(request, *args, **kwargs)
+
 class AddEating(CreateView):
     model = Eating
 
@@ -34,6 +42,7 @@ class AddEating(CreateView):
     def post(self, request, *args, **kwargs):
         x = request.POST.copy()
         x['date'] = str(kwargs['pk'])
+        x['user'] = request.user
         request.POST = x
         return super(AddEating, self).post(request, *args, **kwargs)
 
@@ -49,8 +58,8 @@ class ListEatingDates(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        #filter_qs = queryset.filter()
-        return queryset
+        filter_qs = queryset.filter(user=self.request.user)
+        return filter_qs
 
 
 class ListEatings(ListView):

@@ -3,9 +3,13 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # Create your models here.
+from users.models import User
+
+
 class EatingDate(models.Model):
 
     date = models.DateField(verbose_name='Дата', null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         #print('str')
@@ -29,4 +33,5 @@ class Eating(models.Model):
     weight_5 = models.PositiveIntegerField(verbose_name='Граммовка блюда №5', validators=[MinValueValidator(1)], blank=True, null=True)
     dish_6 = models.CharField(verbose_name='Блюдо №6', max_length=20, blank=True, null=True)
     weight_6 = models.PositiveIntegerField(verbose_name='Граммовка блюда №6', validators=[MinValueValidator(1)], blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     date = models.ForeignKey(EatingDate, on_delete=models.CASCADE, null=True, blank=True)

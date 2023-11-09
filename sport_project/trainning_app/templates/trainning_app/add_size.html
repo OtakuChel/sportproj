@@ -9,13 +9,12 @@
     <form method="post">
         {% csrf_token %}
 
-        {% for size in form %}
         <div class="form-style {% if field.errors %} errors {% endif %}">
-            {{ size.label_tag }}
-            {{ size.errors }}
-            {{ size }}
+            {{ form.label_tag }}
+            {{ form.errors }}
+            {{ form }}
         </div>
-        {% endfor %}
+
         <button>Отправить</button>
     </form>
 {% endblock %}

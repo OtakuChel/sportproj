@@ -13,6 +13,12 @@ class AddBodySize(CreateView):
     template_name = 'trainning_app/add_size.html'
     success_url = 'done'
 
+    def post(self, request, *args, **kwargs):
+        x = request.POST.copy()
+        x['user'] = request.user
+        request.POST = x
+        return super(AddBodySize, self).post(request, *args, **kwargs)
+
 class DoneView(TemplateView):
     template_name = 'trainning_app/done.html'
 
@@ -23,8 +29,8 @@ class ListBodySize(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        #filter_qs = queryset.filter()
-        return  queryset
+        filter_qs = queryset.filter(user=self.request.user)
+        return filter_qs
 
 class DetailBodySize(DetailView):
     template_name = 'trainning_app/detail_size.html'
